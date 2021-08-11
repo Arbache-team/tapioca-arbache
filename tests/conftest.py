@@ -1,8 +1,8 @@
 import pytest
 import uuid
 
-from tapioca_arbache.tapioca_arbache import OauthClient, PerfilAdapter
-from tapioca_arbache import PerfilClient
+from tapioca_arbache.tapioca_arbache import PerfilAdapter
+from tapioca_arbache import PerfilClient, LicencaClient, OauthClient
 
 
 pytest_plugins = [
@@ -32,4 +32,11 @@ def oauth_client():
         grant_type='password',
         username='testandinho@arbache.com',
         password='teste123'
+    )
+
+@pytest.fixture
+def licenca_client():
+    return LicencaClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4())
     )
