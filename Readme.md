@@ -9,6 +9,16 @@ Python clients para acessar os recursos das apis da arbache
 # pip install {}
 ```
 
+Para autenticar um usuário um token de acesso é necessário informar o `client_id` da aplicação registrada na arbache, `grant_type=password`, `username` e `password`.
+```
+autenticador = OauthClient(
+    client_id='',
+    grant_type='password',
+    username='',
+    password=''
+)
+```
+
 Para instânciar um client basta informar o `access_token` e o `perfil` e o `ambiente`. Caso o parâmetro ambiente seja omitido, as requisições irão para produção.
 ```
 perfil_client = PerfilClien(

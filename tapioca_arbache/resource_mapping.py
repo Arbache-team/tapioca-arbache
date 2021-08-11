@@ -4,3 +4,9 @@ CRM_PERFIL_ENDPOINT = {
         "methods": ["GET"],
     }
 }
+CRM_OAUTH = {
+    "oauth_token": {
+        "resource": "backend/oauth-token/",
+        "methods": ["POST"],
+    }
+}

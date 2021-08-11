@@ -2,7 +2,9 @@ from tapioca import (
     JSONAdapterMixin, TapiocaAdapter, generate_wrapper_from_adapter
 )
 from requests_oauthlib import OAuth2
-from tapioca_arbache.resource_mapping import CRM_PERFIL_ENDPOINT
+from tapioca_arbache.resource_mapping import (
+    CRM_PERFIL_ENDPOINT, CRM_OAUTH
+)
 
 
 class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
@@ -59,6 +61,23 @@ class PerfilAdapter(ArbacheAdapter):
     resource_mapping = CRM_PERFIL_ENDPOINT
 
 
+class OauthAdapter(ArbacheAdapter):
+    prod_url = 'https://crm.arbache.com.br'
+    homolog_url = 'https://crm-homolog.dev.br'
+    dev_url = 'http://127.0.0.1:8000'
+    resource_mapping = CRM_OAUTH
+
+    def get_request_kwargs(self, api_params, *args, **kwargs):
+        params = super(ArbacheAdapter, self).get_request_kwargs(
+            api_params, *args, **kwargs
+        )
+        required = ['client_id', 'grant_type', 'username', 'password']
+
+        for param in required:
+            assert param in api_params, (f'{param} não informado')
+
+        return params
 
 
 PerfilClient = generate_wrapper_from_adapter(PerfilAdapter)
+OauthClient = generate_wrapper_from_adapter(OauthAdapter)
