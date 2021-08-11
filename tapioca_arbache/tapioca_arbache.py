@@ -71,6 +71,10 @@ class OauthAdapter(ArbacheAdapter):
         params = super(ArbacheAdapter, self).get_request_kwargs(
             api_params, *args, **kwargs
         )
+        required = ['client_id', 'grant_type', 'username', 'password']
+
+        for param in required:
+            assert param in api_params, (f'{param} não informado')
 
         return params
 
