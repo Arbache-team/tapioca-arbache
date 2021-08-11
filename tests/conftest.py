@@ -1,7 +1,7 @@
 import pytest
 import uuid
 
-from tapioca_arbache.tapioca_arbache import PerfilAdapter
+from tapioca_arbache.tapioca_arbache import OauthClient, PerfilAdapter
 from tapioca_arbache import PerfilClient
 
 
@@ -23,4 +23,13 @@ def perfil_client():
     return PerfilClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4())
+    )
+
+@pytest.fixture
+def oauth_client():
+    return OauthClient(
+        client_id='WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
+        grant_type='password',
+        username='testandinho@arbache.com',
+        password='teste123'
     )

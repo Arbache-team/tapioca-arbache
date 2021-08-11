@@ -1,3 +1,3 @@
 from tapioca_arbache.tapioca_arbache import (
-    PerfilClient, AutenticadorClient
+    PerfilClient, OauthClient
 )
