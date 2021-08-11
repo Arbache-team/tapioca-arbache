@@ -21,13 +21,6 @@ def test_autenticar(oauth_client, crm_base_url, autenticador):
 
 @responses.activate
 def test_autenticar_sem_client_id(crm_base_url, autenticador):
-    responses.add(
-        method=responses.POST,
-        url=f"{crm_base_url}/backend/oauth-token/",
-        status=status.HTTP_200_OK,
-        json=autenticador
-    )
-
     oauth_client =  OauthClient(
         grant_type='password',
         username='testandinho@arbache.com',
@@ -41,13 +34,6 @@ def test_autenticar_sem_client_id(crm_base_url, autenticador):
 
 @responses.activate
 def test_autenticar_sem_grant_type(crm_base_url, autenticador):
-    responses.add(
-        method=responses.POST,
-        url=f"{crm_base_url}/backend/oauth-token/",
-        status=status.HTTP_200_OK,
-        json=autenticador
-    )
-
     oauth_client =  OauthClient(
         client_id='WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
         username='testandinho@arbache.com',
@@ -61,13 +47,6 @@ def test_autenticar_sem_grant_type(crm_base_url, autenticador):
 
 @responses.activate
 def test_autenticar_sem_username(crm_base_url, autenticador):
-    responses.add(
-        method=responses.POST,
-        url=f"{crm_base_url}/backend/oauth-token/",
-        status=status.HTTP_200_OK,
-        json=autenticador
-    )
-
     oauth_client =  OauthClient(
         client_id='WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
         grant_type='password',
@@ -81,13 +60,6 @@ def test_autenticar_sem_username(crm_base_url, autenticador):
 
 @responses.activate
 def test_autenticar_sem_password(crm_base_url, autenticador):
-    responses.add(
-        method=responses.POST,
-        url=f"{crm_base_url}/backend/oauth-token/",
-        status=status.HTTP_200_OK,
-        json=autenticador
-    )
-
     oauth_client =  OauthClient(
         client_id='WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
         grant_type='password',
