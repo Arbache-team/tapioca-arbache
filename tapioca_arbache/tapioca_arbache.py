@@ -3,7 +3,7 @@ from tapioca import (
 )
 from requests_oauthlib import OAuth2
 from tapioca_arbache.resource_mapping import (
-    CRM_PERFIL_ENDPOINT, CRM_OAUTH
+    CRM_PERFIL_ENDPOINT, CRM_OAUTH, CRM_LICENCA_ENDPOINT
 )
 
 
@@ -79,5 +79,14 @@ class OauthAdapter(ArbacheAdapter):
         return params
 
 
+class LicencaAdapter(ArbacheAdapter):
+    prod_url = 'https://crm.arbache.com.br'
+    homolog_url = 'https://crm-homolog.dev.br'
+    dev_url = 'http://127.0.0.1:8000'
+    resource_mapping = CRM_LICENCA_ENDPOINT
+
+
+
 PerfilClient = generate_wrapper_from_adapter(PerfilAdapter)
 OauthClient = generate_wrapper_from_adapter(OauthAdapter)
+LicencaClient = generate_wrapper_from_adapter(LicencaAdapter)
