@@ -5,7 +5,7 @@ import status
 
 
 @responses.activate
-def test_autenticar(oauth_client, crm_base_url, autenticador):
+def test_autenticar(crm_base_url, autenticador):
     responses.add(
         method=responses.POST,
         url=f"{crm_base_url}/backend/oauth-token/",
@@ -13,7 +13,16 @@ def test_autenticar(oauth_client, crm_base_url, autenticador):
         json=autenticador
     )
 
-    response = oauth_client.oauth_token().post()
+    data = {
+        'client_id': 'WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
+        'grant_type': 'password',
+        'username': 'testandinho@arbache.com',
+        'password': 'teste123'
+    }
+
+    oauth_client = OauthClient()
+
+    response = oauth_client.oauth_token().post(data=data)
 
     assert response().status_code == status.HTTP_200_OK
     assert response().data == autenticador
@@ -21,50 +30,77 @@ def test_autenticar(oauth_client, crm_base_url, autenticador):
 
 @responses.activate
 def test_autenticar_sem_client_id(crm_base_url, autenticador):
-    oauth_client =  OauthClient(
-        grant_type='password',
-        username='testandinho@arbache.com',
-        password='teste123'
-    )
+    data = {
+        'grant_type': 'password',
+        'username': 'testandinho@arbache.com',
+        'password': 'teste123'
+    }
+    oauth_client =  OauthClient()
     try:
-        response = oauth_client.oauth_token().post()
+        response = oauth_client.oauth_token().post(data=data)
     except Exception as erro:
         assert isinstance(erro, AssertionError)
 
 
 @responses.activate
 def test_autenticar_sem_grant_type(crm_base_url, autenticador):
-    oauth_client =  OauthClient(
-        client_id='WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
-        username='testandinho@arbache.com',
-        password='teste123'
-    )
+    data = {
+        'client_id': 'WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
+        'username': 'testandinho@arbache.com',
+        'password': 'teste123'
+    }
+    oauth_client =  OauthClient()
     try:
-        response = oauth_client.oauth_token().post()
+        response = oauth_client.oauth_token().post(data=data)
     except Exception as erro:
         assert isinstance(erro, AssertionError)
 
 
 @responses.activate
 def test_autenticar_sem_username(crm_base_url, autenticador):
-    oauth_client =  OauthClient(
-        client_id='WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
-        grant_type='password',
-        password='teste123'
-    )
+    data = {
+        'client_id': 'WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
+        'grant_type': 'password',
+        'password': 'teste123'
+    }
+    oauth_client =  OauthClient()
     try:
-        response = oauth_client.oauth_token().post()
+        response = oauth_client.oauth_token().post(data=data)
     except Exception as erro:
         assert isinstance(erro, AssertionError)
 
 
 @responses.activate
 def test_autenticar_sem_password(crm_base_url, autenticador):
-    oauth_client =  OauthClient(
-        client_id='WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
-        grant_type='password',
-        username='testandinho@arbache.com'
-    )
+    data = {
+        'client_id': 'WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
+        'grabt_type': 'password',
+        'username': 'testandinho@arbache.com'
+    }
+    oauth_client =  OauthClient()
+    try:
+        response = oauth_client.oauth_token().post(data=data)
+    except Exception as erro:
+        assert isinstance(erro, AssertionError)
+
+
+@responses.activate
+def test_autenticar_sem_username(crm_base_url, autenticador):
+    data = {
+        'client_id': 'WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
+        'grant_type': 'password',
+        'password': 'teste123'
+    }
+    oauth_client =  OauthClient()
+    try:
+        response = oauth_client.oauth_token().post(data=data)
+    except Exception as erro:
+        assert isinstance(erro, AssertionError)
+
+
+@responses.activate
+def test_autenticar_sem_body(crm_base_url, autenticador):
+    oauth_client =  OauthClient()
     try:
         response = oauth_client.oauth_token().post()
     except Exception as erro:
