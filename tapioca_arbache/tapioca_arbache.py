@@ -73,8 +73,10 @@ class OauthAdapter(ArbacheAdapter):
         )
         required = ['client_id', 'grant_type', 'username', 'password']
 
+        assert params['data'], ('Os dados necessários não foram informados')
+
         for param in required:
-            assert param in api_params, (f'{param} não informado')
+            assert param in params['data'], (f'{param} não informado')
 
         return params
 

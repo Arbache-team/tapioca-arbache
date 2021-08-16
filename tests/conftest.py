@@ -26,15 +26,6 @@ def perfil_client():
     )
 
 @pytest.fixture
-def oauth_client():
-    return OauthClient(
-        client_id='WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
-        grant_type='password',
-        username='testandinho@arbache.com',
-        password='teste123'
-    )
-
-@pytest.fixture
 def licenca_client():
     return LicencaClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
