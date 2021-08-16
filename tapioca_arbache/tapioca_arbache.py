@@ -8,6 +8,9 @@ from tapioca_arbache.resource_mapping import (
 
 
 class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
+    prod_url = 'https://crm.arbache.com.br'
+    homolog_url = 'https://crm-homolog.arbache.dev.br'
+    dev_url = 'http://127.0.0.1:8000'
 
     def get_api_root(self, api_params, **kwargs):
         if api_params.get('ambiente', '').lower() == 'dev':
@@ -55,16 +58,10 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
 
 
 class PerfilAdapter(ArbacheAdapter):
-    prod_url = 'https://crm.arbache.com.br'
-    homolog_url = 'https://crm-homolog.dev.br'
-    dev_url = 'http://127.0.0.1:8000'
     resource_mapping = CRM_PERFIL_ENDPOINT
 
 
 class OauthAdapter(ArbacheAdapter):
-    prod_url = 'https://crm.arbache.com.br'
-    homolog_url = 'https://crm-homolog.dev.br'
-    dev_url = 'http://127.0.0.1:8000'
     resource_mapping = CRM_OAUTH
 
     def get_request_kwargs(self, api_params, *args, **kwargs):
@@ -82,9 +79,6 @@ class OauthAdapter(ArbacheAdapter):
 
 
 class LicencaAdapter(ArbacheAdapter):
-    prod_url = 'https://crm.arbache.com.br'
-    homolog_url = 'https://crm-homolog.dev.br'
-    dev_url = 'http://127.0.0.1:8000'
     resource_mapping = CRM_LICENCA_ENDPOINT
 
 
