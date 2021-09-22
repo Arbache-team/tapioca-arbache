@@ -3,7 +3,8 @@ from tapioca import (
 )
 from requests_oauthlib import OAuth2
 from tapioca_arbache.resource_mapping import (
-    CRM_PERFIL_ENDPOINT, CRM_OAUTH, CRM_LICENCA_ENDPOINT
+    CRM_PERFIL_ENDPOINT, CRM_OAUTH, CRM_LICENCA_ENDPOINT,
+    JOGO_SELF
 )
 
 
@@ -81,8 +82,14 @@ class OauthAdapter(ArbacheAdapter):
 class LicencaAdapter(ArbacheAdapter):
     resource_mapping = CRM_LICENCA_ENDPOINT
 
+class JogoSelfAdapter(ArbacheAdapter):
+    prod_url = 'https://play-api.arbache.dev.br'
+    homolog_url = 'https://play-api-homolog.arbache.dev.br'
+    dev_url = 'http://127.0.0.1:8003'
+    resource_mapping = JOGO_SELF
 
 
 PerfilClient = generate_wrapper_from_adapter(PerfilAdapter)
 OauthClient = generate_wrapper_from_adapter(OauthAdapter)
 LicencaClient = generate_wrapper_from_adapter(LicencaAdapter)
+JogoSelfClient = generate_wrapper_from_adapter(JogoSelfAdapter)

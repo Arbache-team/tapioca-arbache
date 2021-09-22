@@ -10,8 +10,6 @@ CRM_OAUTH = {
         "methods": ["POST"],
     }
 }
-
-
 CRM_LICENCA_ENDPOINT = {
     "licencas-list": {
         "resource": "backend/licencas/",
@@ -19,6 +17,12 @@ CRM_LICENCA_ENDPOINT = {
     },
     "licenca": {
         "resource": "backend/licencas/{codigo}",
+        "methods": ["GET"],
+    }
+}
+JOGO_SELF ={
+    "jogos": {
+        "resource": "/jogos-self",
         "methods": ["GET"],
     }
 }
