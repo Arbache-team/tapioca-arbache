@@ -8,9 +8,7 @@ name: Upload Python Package
 on:
   push:
     branches:
-      -feature/12
-  # release:
-    # types: [created]
+      - feature/12
 jobs:
   deploy:
     runs-on: ubuntu-latest
