@@ -4,7 +4,7 @@ from tapioca import (
 from requests_oauthlib import OAuth2
 from tapioca_arbache.resource_mapping import (
     CRM_PERFIL_ENDPOINT, CRM_OAUTH, CRM_LICENCA_ENDPOINT,
-    JOGO_SELF
+    JOGO_SELF, RELATORIOS
 )
 
 
@@ -14,7 +14,9 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
     dev_url = 'http://127.0.0.1:8000'
 
     def get_api_root(self, api_params, **kwargs):
-        if api_params.get('ambiente', '').lower() == 'dev':
+        if url := api_params.get('url', ''):
+            return url
+        elif api_params.get('ambiente', '').lower() == 'dev':
             return self.dev_url
         elif api_params.get('ambiente', '').lower() == 'homolog':
             return self.homolog_url
@@ -82,6 +84,7 @@ class OauthAdapter(ArbacheAdapter):
 class LicencaAdapter(ArbacheAdapter):
     resource_mapping = CRM_LICENCA_ENDPOINT
 
+
 class JogoSelfAdapter(ArbacheAdapter):
     prod_url = 'https://play-api.arbache.dev.br'
     homolog_url = 'https://play-api-homolog.arbache.dev.br'
@@ -89,7 +92,15 @@ class JogoSelfAdapter(ArbacheAdapter):
     resource_mapping = JOGO_SELF
 
 
+class RelatoriosAdapter(ArbacheAdapter):
+    prod_url = 'https://gestao.arbache.dev.br'
+    homolog_url = 'https://gestao-homolog.arbache.dev.br/'
+    dev_url = 'http://127.0.0.1:8002'
+    resource_mapping = RELATORIOS
+
+
 PerfilClient = generate_wrapper_from_adapter(PerfilAdapter)
 OauthClient = generate_wrapper_from_adapter(OauthAdapter)
 LicencaClient = generate_wrapper_from_adapter(LicencaAdapter)
 JogoSelfClient = generate_wrapper_from_adapter(JogoSelfAdapter)
+RelatoriClient = generate_wrapper_from_adapter(RelatoriosAdapter)
