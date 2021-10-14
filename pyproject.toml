@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tapioca-arbache"
-version = "0.5.0"
+version = "0.4.1"
 description = "Clients for Arbache's APIs"
 authors = ["Leonardo Jose N Silva"]
 
