@@ -16,19 +16,19 @@ CRM_LICENCA_ENDPOINT = {
         "methods": ["GET"],
     },
     "licenca": {
-        "resource": "backend/licencas/{codigo}",
+        "resource": "backend/licencas/{codigo}/",
         "methods": ["GET"],
     }
 }
 JOGO_SELF = {
     "jogos": {
-        "resource": "/jogos-self",
+        "resource": "/jogos-self/",
         "methods": ["GET"],
     }
 }
 RELATORIOS = {
     "relatorios": {
-        "resource": "/relatorios",
+        "resource": "/relatorios/",
         "methods": ["GET", "POST"],
     }
 }
