@@ -2,7 +2,7 @@ import pytest
 import uuid
 
 from tapioca_arbache.tapioca_arbache import PerfilAdapter
-from tapioca_arbache import PerfilClient, LicencaClient, OauthClient
+from tapioca_arbache import PerfilClient, LicencaClient, OauthClient, JogoClient
 
 
 pytest_plugins = [
@@ -28,6 +28,13 @@ def perfil_client():
 @pytest.fixture
 def licenca_client():
     return LicencaClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4())
+    )
+
+@pytest.fixture
+def jogo_client():
+    return JogoClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4())
     )
