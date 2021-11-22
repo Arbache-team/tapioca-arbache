@@ -4,15 +4,15 @@ import uuid
 
 
 @responses.activate
-def test_retrieve_licenca(licenca_client, crm_base_url):
+def test_retrieve_jogo(jogo_client, crm_base_url):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.GET,
-        url=f"{crm_base_url}/backend/licencas/{codigo}/",
+        url=f"{crm_base_url}/backend/jogos/{codigo}/",
         status=status.HTTP_200_OK,
         json={}
     )
 
-    response = licenca_client.licenca(codigo=codigo).get()
+    response = jogo_client.jogo(codigo=codigo).get()
 
     assert response().status_code == status.HTTP_200_OK

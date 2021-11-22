@@ -32,3 +32,13 @@ RELATORIOS = {
         "methods": ["GET", "POST"],
     }
 }
+CRM_JOGO_ENDPOINT = {
+    "jogos" : {
+        "resource": "backend/jogos/",
+        "methods": ["GET, POST"]
+    },
+    "jogo" : {
+        "resource": "backend/jogos/{codigo}/",
+        "methods": ["GET, PATCH"]
+    }
+}
