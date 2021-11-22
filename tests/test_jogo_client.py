@@ -13,6 +13,6 @@ def test_retrieve_jogo(jogo_client, crm_base_url):
         json={}
     )
 
-    response = jogo_client.jogos(codigo=codigo).get()
+    response = jogo_client.jogo(codigo=codigo).get()
 
     assert response().status_code == status.HTTP_200_OK
