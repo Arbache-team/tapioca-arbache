@@ -12,11 +12,11 @@ CRM_OAUTH = {
 }
 CRM_LICENCA_ENDPOINT = {
     "licencas-list": {
-        "resource": "backend/licencas/",
+        "resource": "/backend/licencas/",
         "methods": ["GET"],
     },
     "licenca": {
-        "resource": "backend/licencas/{codigo}/",
+        "resource": "/backend/licencas/{codigo}/",
         "methods": ["GET"],
     }
 }
@@ -28,17 +28,17 @@ JOGO_SELF = {
 }
 RELATORIOS = {
     "relatorios": {
-        "resource": "/relatorios/",
+        "resource": "/backend/relatorios/",
         "methods": ["GET", "POST"],
     }
 }
 CRM_JOGO_ENDPOINT = {
     "jogos" : {
-        "resource": "backend/jogos/",
-        "methods": ["GET, POST"]
+        "resource": "/backend/jogos/",
+        "methods": ["GET", "POST"]
     },
     "jogo" : {
-        "resource": "backend/jogos/{codigo}/",
-        "methods": ["GET, PATCH"]
+        "resource": "/backend/jogos/{codigo}/",
+        "methods": ["GET", "PATCH"]
     }
 }
