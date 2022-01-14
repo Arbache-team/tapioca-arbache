@@ -9,8 +9,7 @@ from tapioca_arbache import (
 
 
 pytest_plugins = [
-    "tests.fixtures.perfil",
-    "tests.fixtures.equipe",
+    "tests.fixtures.perfil"
 ]
 
 
