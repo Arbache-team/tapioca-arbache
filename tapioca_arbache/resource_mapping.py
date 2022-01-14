@@ -42,3 +42,13 @@ CRM_JOGO_ENDPOINT = {
         "methods": ["GET", "PATCH"]
     }
 }
+CRM_EQUIPES_ENDPOINT = {
+    "equipes": {
+        "resource":"/backend/equipes/",
+        "methods": ["GET"],
+    },
+    "equipe" : {
+        "resource": "/backend/equipes/{codigo}/",
+        "methods": ["GET"],
+    }
+}
