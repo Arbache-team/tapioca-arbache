@@ -18,6 +18,10 @@ CRM_LICENCA_ENDPOINT = {
     "licenca": {
         "resource": "/backend/licencas/{codigo}/",
         "methods": ["GET"],
+    },
+    "licenca_conclusao": {
+        "resource": "/backend/licencas/{codigo}/data-conclusao/",
+        "methods": ["PATCH"],
     }
 }
 JOGO_SELF = {
