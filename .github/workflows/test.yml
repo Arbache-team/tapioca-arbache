@@ -12,8 +12,7 @@ jobs:
       - name: Install dependencies
         with:
           python-version: '3.9.7'
-      - run: |
-          python3 -m pip install --upgrade pip
+        run: |
           pip install poetry
           poetry install
       - name: Teste
