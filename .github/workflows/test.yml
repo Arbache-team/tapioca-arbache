@@ -12,6 +12,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip install poetry
+          poetry env use python3.9
           poetry install
       - name: Teste
         run: |
