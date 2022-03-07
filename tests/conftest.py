@@ -1,7 +1,7 @@
 import pytest
 import uuid
 
-from tapioca_arbache.tapioca_arbache import PerfilAdapter
+from tapioca_arbache.tapioca_arbache import MidiaClient, PerfilAdapter
 from tapioca_arbache import (
     PerfilClient, LicencaClient, OauthClient, JogoClient,
     EquipeClient
@@ -16,6 +16,10 @@ pytest_plugins = [
 @pytest.fixture
 def crm_base_url():
     return "https://crm.arbache.com.br"
+
+@pytest.fixture
+def play_base_url():
+    return "https://play-api.arbache.dev.br"
 
 @pytest.fixture
 def perfil_adapter():
@@ -46,6 +50,14 @@ def jogo_client():
 @pytest.fixture
 def equipe_client():
     return EquipeClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4())
+    )
+
+
+@pytest.fixture
+def midia_client():
+    return MidiaClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4())
     )
