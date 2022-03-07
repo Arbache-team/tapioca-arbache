@@ -109,9 +109,6 @@ class EquipeAdapter(ArbacheAdapter):
 
 
 class MidiaAdapter(ArbacheAdapter):
-    prod_url = 'https://play-api.arbache.dev.br'
-    homolog_url = 'https://play-api-homolog.arbache.dev.br'
-    dev_url = 'http://127.0.0.1:8003'
     resource_mapping = MIDIAS
 
 
