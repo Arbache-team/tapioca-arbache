@@ -28,6 +28,6 @@ def test_conclusao_licenca(licenca_client, crm_base_url):
         json={}
     )
 
-    response = licenca_client.licenca_conclusao(codigo=codigo).patch()
+    response = licenca_client.licenca_patch(codigo=codigo).patch()
 
     assert response().status_code == status.HTTP_200_OK
