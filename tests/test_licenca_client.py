@@ -23,7 +23,7 @@ def test_conclusao_licenca(licenca_client, crm_base_url):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.PATCH,
-        url=f"{crm_base_url}/backend/licencas/{codigo}/data-conclusao/",
+        url=f"{crm_base_url}/backend/licencas/{codigo}/",
         status=status.HTTP_200_OK,
         json={}
     )
