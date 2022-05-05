@@ -1,7 +1,7 @@
 import pytest
 import uuid
 
-from tapioca_arbache.tapioca_arbache import PerfilAdapter
+from tapioca_arbache.tapioca_arbache import InterfaceClient, PerfilAdapter
 from tapioca_arbache import (
     PerfilClient, LicencaClient, OauthClient, JogoClient,
     EquipeClient, MidiaClient
@@ -66,4 +66,12 @@ def midia_client():
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
         url='https://play-api-homolog.arbache.dev.br'
+    )
+
+
+@pytest.fixture
+def interface_client():
+    return InterfaceClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4()),
     )

@@ -63,3 +63,10 @@ MIDIAS = {
         "methods": ["GET"]
     }
 }
+
+INTERFACE = {
+    "interface": {
+        "resource": "/backend/perfis/configuracoes/{codigo}/",
+        "methods": ["GET"]
+    }
+}
