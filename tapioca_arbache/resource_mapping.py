@@ -66,7 +66,7 @@ MIDIAS = {
 
 INTERFACE = {
     "interface": {
-        "resource": "/backend/perfis/configuracoes/{codigo}/",
+        "resource": "/backend/perfil/{codigo}/interface/",
         "methods": ["GET"]
     }
 }
