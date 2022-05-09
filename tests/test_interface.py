@@ -8,7 +8,7 @@ def test_retrieve_interface(interface_client, crm_base_url):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.GET,
-        url=f"{crm_base_url}/backend/perfis/configuracoes/{codigo}/",
+        url=f"{crm_base_url}/backend/perfil/{codigo}/interface/",
         status=status.HTTP_200_OK,
         json={}
     )
