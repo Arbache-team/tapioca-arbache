@@ -3,7 +3,7 @@ import status
 
 
 @responses.activate
-def test_list_midias(midia_client, play_base_url):
+def test_list_midias(play_midia_client, play_base_url):
 
     responses.add(
         method=responses.GET,
@@ -12,6 +12,6 @@ def test_list_midias(midia_client, play_base_url):
         json={}
     )
 
-    response = midia_client.midias().get()
+    response = play_midia_client.midias().get()
 
     assert response().status_code == status.HTTP_200_OK

@@ -57,9 +57,16 @@ CRM_EQUIPES_ENDPOINT = {
     }
 }
 
-MIDIAS = {
+PLAY_MIDIAS_ENDPOINT = {
     "midias": {
         "resource": "/midias/",
+        "methods": ["GET"]
+    }
+}
+
+CRM_MIDIAS_ENDPOINT = {
+    "midias": {
+        "resource": "/backend/midias/",
         "methods": ["GET"]
     }
 }
