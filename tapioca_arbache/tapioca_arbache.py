@@ -3,9 +3,9 @@ from tapioca import (
 )
 from requests_oauthlib import OAuth2
 from tapioca_arbache.resource_mapping import (
-    CRM_EQUIPES_ENDPOINT, CRM_PERFIL_ENDPOINT, CRM_OAUTH,
-    CRM_LICENCA_ENDPOINT, INTERFACE,
-    JOGO_SELF, MIDIAS, RELATORIOS, CRM_JOGO_ENDPOINT
+    CRM_EQUIPES_ENDPOINT, CRM_MIDIAS_ENDPOINT, CRM_PERFIL_ENDPOINT, CRM_OAUTH,
+    CRM_LICENCA_ENDPOINT, INTERFACE, JOGO_SELF, PLAY_MIDIAS_ENDPOINT,
+    RELATORIOS, CRM_JOGO_ENDPOINT
 )
 
 
@@ -108,12 +108,16 @@ class EquipeAdapter(ArbacheAdapter):
     resource_mapping = CRM_EQUIPES_ENDPOINT
 
 
-class MidiaAdapter(ArbacheAdapter):
-    resource_mapping = MIDIAS
+class PlayMidiaAdapter(ArbacheAdapter):
+    resource_mapping = PLAY_MIDIAS_ENDPOINT
 
 
 class InterfaceAdapter(ArbacheAdapter):
     resource_mapping = INTERFACE
+
+
+class CrmMidiaAdapter(ArbacheAdapter):
+    resource_mapping = CRM_MIDIAS_ENDPOINT
 
 
 PerfilClient = generate_wrapper_from_adapter(PerfilAdapter)
@@ -123,5 +127,6 @@ JogoSelfClient = generate_wrapper_from_adapter(JogoSelfAdapter)
 RelatorioClient = generate_wrapper_from_adapter(RelatoriosAdapter)
 JogoClient = generate_wrapper_from_adapter(JogoAdapter)
 EquipeClient = generate_wrapper_from_adapter(EquipeAdapter)
-MidiaClient = generate_wrapper_from_adapter(MidiaAdapter)
+PlayMidiaClient = generate_wrapper_from_adapter(PlayMidiaAdapter)
 InterfaceClient = generate_wrapper_from_adapter(InterfaceAdapter)
+CrmMidiaClient = generate_wrapper_from_adapter(CrmMidiaAdapter)

@@ -4,7 +4,8 @@ import uuid
 from tapioca_arbache.tapioca_arbache import InterfaceClient, PerfilAdapter
 from tapioca_arbache import (
     PerfilClient, LicencaClient, OauthClient, JogoClient,
-    EquipeClient, MidiaClient
+    EquipeClient, CrmMidiaClient, PlayMidiaClient,
+    InterfaceClient
 )
 
 
@@ -61,8 +62,8 @@ def equipe_client():
 
 
 @pytest.fixture
-def midia_client():
-    return MidiaClient(
+def play_midia_client():
+    return PlayMidiaClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
         url='https://play-api-homolog.arbache.dev.br'
@@ -72,6 +73,14 @@ def midia_client():
 @pytest.fixture
 def interface_client():
     return InterfaceClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4()),
+    )
+
+
+@pytest.fixture
+def crm_midia_client():
+    return CrmMidiaClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
     )
