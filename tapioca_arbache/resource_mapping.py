@@ -64,6 +64,13 @@ PLAY_MIDIAS_ENDPOINT = {
     }
 }
 
+PLAY_JOGOS_ENDPOINT = {
+    'jogos' : {
+        "resource": "/jogos-self/",
+        "methods": ["GET"]
+    }
+}
+
 CRM_MIDIAS_ENDPOINT = {
     "midias": {
         "resource": "/backend/midias/",
