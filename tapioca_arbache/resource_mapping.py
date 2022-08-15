@@ -65,7 +65,7 @@ PLAY_MIDIAS_ENDPOINT = {
 }
 
 PLAY_JOGOS_ENDPOINT = {
-    'jogos' : {
+    'jogo' : {
         "resource": "/jogos-self/{codigo}/",
         "methods": ["GET"]
     }

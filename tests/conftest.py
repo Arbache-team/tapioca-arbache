@@ -5,7 +5,7 @@ from tapioca_arbache.tapioca_arbache import InterfaceClient, PerfilAdapter
 from tapioca_arbache import (
     PerfilClient, LicencaClient, OauthClient, JogoClient,
     EquipeClient, CrmMidiaClient, PlayMidiaClient,
-    InterfaceClient
+    InterfaceClient, PlayJogoClient
 )
 
 
@@ -64,6 +64,15 @@ def equipe_client():
 @pytest.fixture
 def play_midia_client():
     return PlayMidiaClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4()),
+        url='https://play-api-homolog.arbache.dev.br'
+    )
+
+
+@pytest.fixture
+def play_jogo_client():
+    return PlayJogoClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
         url='https://play-api-homolog.arbache.dev.br'
