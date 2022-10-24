@@ -1,3 +1,4 @@
+import json
 from tapioca import (
     JSONAdapterMixin, TapiocaAdapter, generate_wrapper_from_adapter
 )
@@ -7,6 +8,7 @@ from tapioca_arbache.resource_mapping import (
     CRM_LICENCA_ENDPOINT, INTERFACE, JOGO_SELF, PLAY_MIDIAS_ENDPOINT,
     RELATORIOS, CRM_JOGO_ENDPOINT
 )
+from tapioca.exceptions import ClientError
 
 
 class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
@@ -59,6 +61,23 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
             iterator_request_kwargs['params']['pagina'] = pagina_atual + 1
 
         return iterator_request_kwargs
+
+    def process_response(self, response):
+
+        if 400 <= response.status_code < 500:
+            response_body = json.loads(response.content)
+            request_body = json.loads(response.request.body)
+
+            message = json.dumps(
+                {
+                    'status_code': response.status_code,
+                    'response_body': response_body,
+                    'request_body': request_body
+                }
+            )
+            raise ClientError(message=message)
+
+        return super().process_response(response)
 
 
 class PerfilAdapter(ArbacheAdapter):
