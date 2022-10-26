@@ -1,3 +1,4 @@
+import json
 import responses
 import status
 import pytest
@@ -27,7 +28,8 @@ def test_response_BAD_REQUEST(relatorio_client, gestao_base_url, response_BAD_RE
         json=response_BAD_REQUEST
     )
 
-    with pytest.raises(ClientError):
-        response = relatorio_client.relatorios().post(data=request_body)
+    with pytest.raises(ClientError) as erro:
+        relatorio_client.relatorios().post(data=request_body)
 
-        assert response().status_code == status.HTTP_400_BAD_REQUEST
+    json_erro = json.loads(str(erro.value))
+    assert json_erro['status_code'] == status.HTTP_400_BAD_REQUEST
