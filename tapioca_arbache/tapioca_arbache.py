@@ -56,7 +56,7 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
         if pagina_atual is None:
             iterator_request_kwargs['params']['pagina'] = 2
         else:
-            iterator_request_kwargs['params']['pagina'] =  pagina_atual + 1
+            iterator_request_kwargs['params']['pagina'] = pagina_atual + 1
 
         return iterator_request_kwargs
 

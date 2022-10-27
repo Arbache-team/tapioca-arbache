@@ -1,9 +1,9 @@
 import pytest
 import uuid
 
-from tapioca_arbache.tapioca_arbache import InterfaceClient, PerfilAdapter
+from tapioca_arbache.tapioca_arbache import PerfilAdapter
 from tapioca_arbache import (
-    PerfilClient, LicencaClient, OauthClient, JogoClient,
+    PerfilClient, LicencaClient, JogoClient,
     EquipeClient, CrmMidiaClient, PlayMidiaClient,
     InterfaceClient
 )
