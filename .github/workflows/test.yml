@@ -18,7 +18,7 @@ jobs:
       - name: Lint
         run: |
           pip3 install flake8
-          flake8;
+          flake8 --exclude=tapioca_arbache/__init__.py,*/fixtures/*;
       - name: Teste
         run: |
           poetry run pytest -vvv

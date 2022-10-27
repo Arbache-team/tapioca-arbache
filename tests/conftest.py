@@ -5,12 +5,13 @@ from tapioca_arbache.tapioca_arbache import PerfilAdapter
 from tapioca_arbache import (
     PerfilClient, LicencaClient, JogoClient,
     EquipeClient, CrmMidiaClient, PlayMidiaClient,
-    InterfaceClient
+    InterfaceClient, RelatorioClient
 )
 
 
 pytest_plugins = [
-    "tests.fixtures.perfil"
+    "tests.fixtures.perfil",
+    "tests.fixtures.relatorios"
 ]
 
 
@@ -22,6 +23,11 @@ def crm_base_url():
 @pytest.fixture
 def play_base_url():
     return "https://play-api-homolog.arbache.dev.br"
+
+
+@pytest.fixture
+def gestao_base_url():
+    return "https://gestao.arbache.dev.br"
 
 
 @pytest.fixture
@@ -40,6 +46,14 @@ def perfil_client():
 @pytest.fixture
 def licenca_client():
     return LicencaClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4())
+    )
+
+
+@pytest.fixture
+def relatorio_client():
+    return RelatorioClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4())
     )
