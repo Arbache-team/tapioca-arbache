@@ -36,3 +36,6 @@ def test_response_BAD_REQUEST(relatorio_client, gestao_base_url, response_BAD_RE
     assert all (
         key in response_BAD_REQUEST.keys() for key in json_erro['response_body'].keys()
     )
+    assert all (
+        key in request_body.keys() for key in json_erro['request_body'].keys()
+    )
