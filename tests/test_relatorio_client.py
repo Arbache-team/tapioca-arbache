@@ -33,3 +33,6 @@ def test_response_BAD_REQUEST(relatorio_client, gestao_base_url, response_BAD_RE
 
     json_erro = json.loads(str(erro.value))
     assert json_erro['status_code'] == status.HTTP_400_BAD_REQUEST
+    assert all (
+        key in response_BAD_REQUEST.keys() for key in json_erro['response_body'].keys()
+    )
