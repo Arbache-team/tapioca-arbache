@@ -37,21 +37,21 @@ RELATORIOS = {
     }
 }
 CRM_JOGO_ENDPOINT = {
-    "jogos" : {
+    "jogos": {
         "resource": "/backend/jogos/",
         "methods": ["GET", "POST"]
     },
-    "jogo" : {
+    "jogo": {
         "resource": "/backend/jogos/{codigo}/",
         "methods": ["GET", "PATCH"]
     }
 }
 CRM_EQUIPES_ENDPOINT = {
     "equipes": {
-        "resource":"/backend/equipes/",
+        "resource": "/backend/equipes/",
         "methods": ["GET"],
     },
-    "equipe" : {
+    "equipe": {
         "resource": "/backend/equipes/{codigo}/",
         "methods": ["GET"],
     }
