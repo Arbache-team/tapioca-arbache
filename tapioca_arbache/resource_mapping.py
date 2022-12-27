@@ -34,6 +34,10 @@ RELATORIOS = {
     "relatorios": {
         "resource": "/backend/relatorios/",
         "methods": ["GET", "POST"],
+    },
+    "relatorio": {
+        "resource": "/backend/relatorios/{codigo}",
+        "methods": ["DELETE"]
     }
 }
 CRM_JOGO_ENDPOINT = {
