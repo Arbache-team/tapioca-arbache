@@ -36,7 +36,7 @@ RELATORIOS = {
         "methods": ["GET", "POST"],
     },
     "relatorio": {
-        "resource": "/backend/relatorios/{codigo}",
+        "resource": "/backend/relatorios/{codigo}/",
         "methods": ["DELETE"]
     }
 }
