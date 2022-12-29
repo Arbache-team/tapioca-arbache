@@ -65,17 +65,18 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
     def process_response(self, response):
 
         if 400 <= response.status_code < 500:
-            response_body = json.loads(response.content)
-            request_body = json.loads(response.request.body)
+            if response.content and response.request.body:
+                response_body = json.loads(response.content)
+                request_body = json.loads(response.request.body)
 
-            message = json.dumps(
-                {
-                    'status_code': response.status_code,
-                    'response_body': response_body,
-                    'request_body': request_body
-                }
-            )
-            raise ClientError(message=message)
+                message = json.dumps(
+                    {
+                        'status_code': response.status_code,
+                        'response_body': response_body,
+                        'request_body': request_body
+                    }
+                )
+                raise ClientError(message=message)
 
         return super().process_response(response)
 
