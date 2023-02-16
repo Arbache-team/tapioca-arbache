@@ -146,6 +146,7 @@ class PlayResultadoJogoAdapter(ArbacheAdapter):
     dev_url = 'http://127.0.0.1:8003'
     resource_mapping = PLAY_RESULTADOS_JOGOS_ENDPOINT
 
+
 PerfilClient = generate_wrapper_from_adapter(PerfilAdapter)
 OauthClient = generate_wrapper_from_adapter(OauthAdapter)
 LicencaClient = generate_wrapper_from_adapter(LicencaAdapter)
