@@ -81,3 +81,11 @@ INTERFACE = {
         "methods": ["GET"]
     }
 }
+
+
+PLAY_RESULTADOS_JOGOS_ENDPOINT = {
+    "resultado_jogo": {
+        "resource": "/jogos-resultados/{codigo}/",
+        "methods": ["GET", "PATCH"],
+    }
+}

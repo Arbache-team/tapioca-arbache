@@ -6,7 +6,7 @@ from requests_oauthlib import OAuth2
 from tapioca_arbache.resource_mapping import (
     CRM_EQUIPES_ENDPOINT, CRM_MIDIAS_ENDPOINT, CRM_PERFIL_ENDPOINT, CRM_OAUTH,
     CRM_LICENCA_ENDPOINT, INTERFACE, JOGO_SELF, PLAY_MIDIAS_ENDPOINT,
-    RELATORIOS, CRM_JOGO_ENDPOINT
+    RELATORIOS, CRM_JOGO_ENDPOINT, PLAY_RESULTADOS_JOGOS_ENDPOINT
 )
 from tapioca.exceptions import ClientError
 
@@ -140,6 +140,12 @@ class CrmMidiaAdapter(ArbacheAdapter):
     resource_mapping = CRM_MIDIAS_ENDPOINT
 
 
+class PlayResultadoJogoAdapter(ArbacheAdapter):
+    prod_url = 'https://play-api.arbache.dev.br'
+    homolog_url = 'https://play-api-homolog.arbache.dev.br'
+    dev_url = 'http://127.0.0.1:8003'
+    resource_mapping = PLAY_RESULTADOS_JOGOS_ENDPOINT
+
 PerfilClient = generate_wrapper_from_adapter(PerfilAdapter)
 OauthClient = generate_wrapper_from_adapter(OauthAdapter)
 LicencaClient = generate_wrapper_from_adapter(LicencaAdapter)
@@ -150,3 +156,4 @@ EquipeClient = generate_wrapper_from_adapter(EquipeAdapter)
 PlayMidiaClient = generate_wrapper_from_adapter(PlayMidiaAdapter)
 InterfaceClient = generate_wrapper_from_adapter(InterfaceAdapter)
 CrmMidiaClient = generate_wrapper_from_adapter(CrmMidiaAdapter)
+ResultadoJogoClient = generate_wrapper_from_adapter(PlayResultadoJogoAdapter)
