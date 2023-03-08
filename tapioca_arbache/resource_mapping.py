@@ -105,5 +105,9 @@ PLAY_JOGO_SUBDOMINIO_ENDPOINT = {
     "jogos": {
         "resource": "/jogos-subdominios/",
         "methods": ["POST"],
+    },
+    "jogo": {
+        "resource": "/jogos-subdominios/{codigo}/",
+        "methods": ["PATCH"],
     }
 }
