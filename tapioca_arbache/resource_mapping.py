@@ -89,3 +89,25 @@ PLAY_RESULTADOS_JOGOS_ENDPOINT = {
         "methods": ["GET", "PATCH"],
     }
 }
+
+PLAY_SUBDOMINIO_ENDPOINT = {
+    "subdominios": {
+        "resource": "/subdominios/",
+        "methods": ["POST"],
+    },
+    "subdominio": {
+        "resource": "/subdominios/{codigo}/",
+        "methods": ["PATCH"],
+    }
+}
+
+PLAY_JOGO_SUBDOMINIO_ENDPOINT = {
+    "jogos": {
+        "resource": "/jogos-subdominios/",
+        "methods": ["POST"],
+    },
+    "jogo": {
+        "resource": "/jogos-subdominios/{codigo}/",
+        "methods": ["PATCH"],
+    }
+}

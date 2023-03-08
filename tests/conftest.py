@@ -5,7 +5,8 @@ from tapioca_arbache.tapioca_arbache import PerfilAdapter
 from tapioca_arbache import (
     PerfilClient, LicencaClient, JogoClient,
     EquipeClient, CrmMidiaClient, PlayMidiaClient,
-    InterfaceClient, RelatorioClient
+    InterfaceClient, RelatorioClient, PlaySubdominioClient,
+    PlayJogosSubdominioClient
 )
 
 
@@ -97,4 +98,22 @@ def crm_midia_client():
     return CrmMidiaClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
+    )
+
+
+@pytest.fixture
+def play_subdominio_client():
+    return PlaySubdominioClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4()),
+        url='https://play-api-homolog.arbache.dev.br'
+    )
+
+
+@pytest.fixture
+def play_jogos_subdominio_client():
+    return PlayJogosSubdominioClient(
+        access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
+        perfil=str(uuid.uuid4()),
+        url='https://play-api-homolog.arbache.dev.br'
     )
