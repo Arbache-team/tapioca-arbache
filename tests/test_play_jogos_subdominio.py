@@ -27,7 +27,9 @@ def test_atualizar_jogosubdominio(play_jogos_subdominio_client, play_base_url):
         method=responses.PATCH,
         url=f"{play_base_url}/jogos-subdominios/{codigo}/",
         status=status.HTTP_200_OK,
-        json={}
+        json={
+            'preco': 10.00
+        }
     )
 
     response = play_jogos_subdominio_client.jogo(codigo=codigo).patch()
