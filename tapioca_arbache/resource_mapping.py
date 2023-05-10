@@ -97,8 +97,8 @@ PLAY_SUBDOMINIO_ENDPOINT = {
     },
     "subdominio": {
         "resource": "/subdominios/{codigo}/",
-        "methods": ["PATCH"],
-    }
+        "methods": ["PATCH", "GET"],
+    },
 }
 
 PLAY_JOGO_SUBDOMINIO_ENDPOINT = {

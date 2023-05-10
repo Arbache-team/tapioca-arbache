@@ -33,3 +33,20 @@ def test_atualizar_subdominio(play_subdominio_client, play_base_url):
     response = play_subdominio_client.subdominio(codigo=codigo).patch()
 
     assert response().status_code == status.HTTP_200_OK
+
+
+@responses.activate
+def test_retrieve_subdominio(
+    play_subdominio_client, play_base_url, response_OK
+):
+    codigo = str(uuid.uuid4())
+    responses.add(
+        method=responses.GET,
+        url=f"{play_base_url}/subdominios/{codigo}/",
+        status=status.HTTP_200_OK,
+        json=response_OK
+    )
+
+    response = play_subdominio_client.subdominio(codigo=codigo).get()
+
+    assert response().status_code == status.HTTP_200_OK
