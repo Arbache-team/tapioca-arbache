@@ -10,6 +10,7 @@ from tapioca_arbache.resource_mapping import (
     PLAY_SUBDOMINIO_ENDPOINT, PLAY_JOGO_SUBDOMINIO_ENDPOINT
 )
 from tapioca.exceptions import ClientError
+from exceptions import ConflictException
 
 
 class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
@@ -64,8 +65,10 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
         return iterator_request_kwargs
 
     def process_response(self, response):
+        if response.status_code == 409:
+            raise ConflictException()
 
-        if 400 <= response.status_code < 500:
+        elif 400 <= response.status_code < 500:
             if response.content and response.request.body:
                 response_body = json.loads(response.content)
                 request_body = json.loads(response.request.body)
