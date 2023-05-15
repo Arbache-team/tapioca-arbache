@@ -15,7 +15,6 @@ from tapioca_arbache.resource_mapping import (
 from tapioca_arbache.exceptions import ConflictException
 
 
-
 class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
     prod_url = 'https://crm.arbache.com.br'
     homolog_url = 'https://crm-homolog.arbache.dev.br'
