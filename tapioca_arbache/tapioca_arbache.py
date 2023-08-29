@@ -4,7 +4,7 @@ from tapioca import (
     JSONAdapterMixin, TapiocaAdapter, generate_wrapper_from_adapter
 )
 from requests_oauthlib import OAuth2
-from tapioca.exceptions import ClientError
+from tapioca.exceptions import ClientError, ResponseProcessException
 
 from tapioca_arbache.resource_mapping import (
     CRM_EQUIPES_ENDPOINT, CRM_MIDIAS_ENDPOINT, CRM_PERFIL_ENDPOINT, CRM_OAUTH,
@@ -75,14 +75,13 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
                 response_body = json.loads(response.content)
                 request_body = json.loads(response.request.body)
 
-                message = json.dumps(
-                    {
-                        'status_code': response.status_code,
-                        'response_body': response_body,
-                        'request_body': request_body
-                    }
-                )
-                raise ClientError(message=message)
+                message = {
+                    'status_code': response.status_code,
+                    'response_body': response_body,
+                    'request_body': request_body
+                }
+
+                raise ResponseProcessException(ClientError, data=message)
 
         return super().process_response(response)
 
