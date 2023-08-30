@@ -1,4 +1,3 @@
-import json
 import responses
 import status
 import pytest
@@ -35,11 +34,10 @@ def test_response_BAD_REQUEST(
     with pytest.raises(ClientError) as erro:
         relatorio_client.relatorios().post(data=request_body)
 
-    json_erro = json.loads(str(erro.value))
-    assert json_erro['status_code'] == status.HTTP_400_BAD_REQUEST
+    assert erro.value.status_code == status.HTTP_400_BAD_REQUEST
     assert all(
-        key in response_BAD_REQUEST.keys() for key in json_erro['response_body'].keys() # noqa
+        key in response_BAD_REQUEST.keys() for key in erro.value.args[0]['response_body'].keys() # noqa
     )
     assert all(
-        key in request_body.keys() for key in json_erro['request_body'].keys() # noqa
+        key in request_body.keys() for key in erro.value.args[0]['request_body'].keys() # noqa
     )

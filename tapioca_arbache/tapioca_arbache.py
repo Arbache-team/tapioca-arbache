@@ -75,14 +75,15 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
                 response_body = json.loads(response.content)
                 request_body = json.loads(response.request.body)
 
-                message = json.dumps(
-                    {
-                        'status_code': response.status_code,
-                        'response_body': response_body,
-                        'request_body': request_body
-                    }
-                )
-                raise ClientError(message=message)
+                message = {
+                    'status_code': response.status_code,
+                    'response_body': response_body,
+                    'request_body': request_body
+                }
+
+                erro = ClientError(message=message)
+                erro.status_code = response.status_code
+                raise erro
 
         return super().process_response(response)
 
