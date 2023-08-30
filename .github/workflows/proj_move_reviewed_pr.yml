@@ -1,0 +1,106 @@
+name: Move issue item to Homolog
+
+on:
+  pull_request_review:
+    types:
+      - submitted
+
+
+jobs:
+  move_to_review:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get project data
+      env:
+        GITHUB_TOKEN: ${{ secrets.ORGANIZATION_SECRET }}
+        ORGANIZATION: ${{ github.repository_owner }}
+        PROJECT_NUMBER: 10
+      if: github.event.review.state == 'approved'
+      run: |
+        gh api graphql -f query='
+            query($org: String!, $number: Int!) {
+                organization(login: $org){
+                    projectV2(number: $number) {
+                        id
+                        fields(first:100) {
+                            nodes {
+                                ... on ProjectV2Field {
+                                    id
+                                    name
+                                }
+                                ... on ProjectV2SingleSelectField {
+                                id
+                                name
+                                options {
+                                    id
+                                    name
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }' -f org=$ORGANIZATION -F number=$PROJECT_NUMBER > project_data.json
+
+        echo 'PROJECT_ID='$(jq '.data.organization.projectV2.id' project_data.json) >> $GITHUB_ENV
+        echo 'ITEM_STATUS_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
+        echo 'ITEM_STATUS_OPTION_ID='$(jq -r '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .options[] | select(.name=="Homologação") | .id' project_data.json) >> $GITHUB_ENV
+
+    - name: Get issue Card from PR
+      env:
+        GITHUB_TOKEN: ${{ secrets.ORGANIZATION_SECRET }}
+        ORGANIZATION: ${{ github.repository_owner }}
+        REPO: tapioca-arbache
+      if: github.event.review.state == 'approved'
+      run: |
+        gh api graphql -f query='
+          query($org: String!, $repo: String!) {
+            repository(owner: $org, name: $repo) {
+              pullRequest(number: ${{ github.event.pull_request.number }}) {
+                number
+                title
+                closingIssuesReferences(first: 1) {
+                  nodes {
+                    id
+                    number
+                    title
+                    projectItems(first:1){
+                      nodes{
+                        id
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }' -f org=$ORGANIZATION -f repo=$REPO > project_data.json
+
+          echo 'ITEM_ISSUE_ID='$(jq -r '.data.repository.pullRequest.closingIssuesReferences.nodes[0].projectItems.nodes[0].id' project_data.json) >> $GITHUB_ENV
+
+    - name: Set issue card to review
+      env:
+        GITHUB_TOKEN: ${{ secrets.ORGANIZATION_SECRET }}
+      if: github.event.review.state == 'approved'
+      run: |
+        gh api graphql -f query='
+          mutation (
+            $project: ID!
+            $item: ID!
+            $status_field: ID!
+            $status_option: String!
+          ) {
+            set_status: updateProjectV2ItemFieldValue(
+              input: {
+                projectId: $project
+                itemId: $item
+                fieldId: $status_field
+                value: {
+                  singleSelectOptionId: $status_option
+                }
+              }
+            ){
+              projectV2Item {
+                id
+              }
+            }
+          }' -f project=$PROJECT_ID -f item=$ITEM_ISSUE_ID -f status_field=$ITEM_STATUS_FIELD_ID -f status_option=$ITEM_STATUS_OPTION_ID
