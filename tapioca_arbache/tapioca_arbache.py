@@ -81,7 +81,9 @@ class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
                     'request_body': request_body
                 }
 
-                raise ResponseProcessException(ClientError, data=message)
+                erro = ClientError(message=message)
+                erro.status_code = response.status_code
+                raise erro
 
         return super().process_response(response)
 
