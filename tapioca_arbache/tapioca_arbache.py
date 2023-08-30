@@ -4,7 +4,7 @@ from tapioca import (
     JSONAdapterMixin, TapiocaAdapter, generate_wrapper_from_adapter
 )
 from requests_oauthlib import OAuth2
-from tapioca.exceptions import ClientError, ResponseProcessException
+from tapioca.exceptions import ClientError
 
 from tapioca_arbache.resource_mapping import (
     CRM_EQUIPES_ENDPOINT, CRM_MIDIAS_ENDPOINT, CRM_PERFIL_ENDPOINT, CRM_OAUTH,

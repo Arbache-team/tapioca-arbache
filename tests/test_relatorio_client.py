@@ -1,4 +1,3 @@
-import json
 import responses
 import status
 import pytest
