@@ -18,7 +18,6 @@ def test_retrieve_interface(interface_client, crm_base_url):
     assert response().status_code == status.HTTP_200_OK
 
 
-
 @responses.activate
 def test_perfil_admin_retrieve_interface(interface_client, crm_base_url):
     codigo = str(uuid.uuid4())
