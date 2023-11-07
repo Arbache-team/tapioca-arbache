@@ -79,6 +79,10 @@ INTERFACE = {
     "interface": {
         "resource": "/backend/perfil/{codigo}/interface/",
         "methods": ["GET"]
+    },
+    "interface_admin": {
+        "resource": "/backend/admin/perfis/{codigo}/interface/",
+        "methods": ["GET"]
     }
 }
 
