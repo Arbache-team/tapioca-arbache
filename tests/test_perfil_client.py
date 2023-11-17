@@ -6,7 +6,7 @@ import status
 def test_perfil_get(perfil_client, crm_base_url, perfil):
     responses.add(
         method=responses.GET,
-        url=f"{crm_base_url}/backend/perfis/",
+        url=f"{crm_base_url}/backend/perfil/",
         status=status.HTTP_200_OK,
         json=perfil,
     )
