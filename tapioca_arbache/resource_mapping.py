@@ -1,6 +1,6 @@
 CRM_PERFIL_ENDPOINT = {
     "perfis": {
-        "resource": "backend/perfis/",
+        "resource": "backend/perfil/",
         "methods": ["GET"],
     }
 }
