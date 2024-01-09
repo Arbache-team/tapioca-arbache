@@ -3,11 +3,11 @@ import status
 
 
 @responses.activate
-def test_list_midias(crm_midia_client, crm_base_url):
+def test_list_midias(crm_midia_client, base_url):
 
     responses.add(
         method=responses.GET,
-        url=f"{crm_base_url}/backend/midias/",
+        url=f"{base_url}/backend/midias/",
         status=status.HTTP_200_OK,
         json={}
     )

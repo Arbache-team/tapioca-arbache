@@ -4,11 +4,11 @@ import uuid
 
 
 @responses.activate
-def test_retrieve_interface(interface_client, crm_base_url):
+def test_retrieve_interface(interface_client, base_url):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.GET,
-        url=f"{crm_base_url}/backend/perfil/{codigo}/interface/",
+        url=f"{base_url}/backend/perfil/{codigo}/interface/",
         status=status.HTTP_200_OK,
         json={}
     )
@@ -19,11 +19,11 @@ def test_retrieve_interface(interface_client, crm_base_url):
 
 
 @responses.activate
-def test_perfil_admin_retrieve_interface(interface_client, crm_base_url):
+def test_perfil_admin_retrieve_interface(interface_client, base_url):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.GET,
-        url=f"{crm_base_url}/backend/admin/perfis/{codigo}/interface/",
+        url=f"{base_url}/backend/admin/perfis/{codigo}/interface/",
         status=status.HTTP_200_OK,
         json={}
     )

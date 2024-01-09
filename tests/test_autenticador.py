@@ -17,10 +17,10 @@ def autenticador():
 
 
 @responses.activate
-def test_autenticar(crm_base_url, autenticador):
+def test_autenticar(base_url, autenticador):
     responses.add(
         method=responses.POST,
-        url=f"{crm_base_url}/backend/oauth-token/",
+        url=f"{base_url}/backend/oauth-token/",
         status=status.HTTP_200_OK,
         json=autenticador
     )
@@ -32,7 +32,7 @@ def test_autenticar(crm_base_url, autenticador):
         'password': 'teste123'
     }
 
-    oauth_client = OauthClient()
+    oauth_client = OauthClient(url='https://teste.com.br')
 
     response = oauth_client.oauth_token().post(data=data)
 
@@ -41,13 +41,13 @@ def test_autenticar(crm_base_url, autenticador):
 
 
 @responses.activate
-def test_autenticar_sem_client_id(crm_base_url):
+def test_autenticar_sem_client_id(base_url):
     data = {
         'grant_type': 'password',
         'username': 'testandinho@arbache.com',
         'password': 'teste123'
     }
-    oauth_client = OauthClient()
+    oauth_client = OauthClient(url='https://teste.com.br')
     try:
         oauth_client.oauth_token().post(data=data)
     except Exception as erro:
@@ -55,13 +55,13 @@ def test_autenticar_sem_client_id(crm_base_url):
 
 
 @responses.activate
-def test_autenticar_sem_grant_type(crm_base_url):
+def test_autenticar_sem_grant_type(base_url):
     data = {
         'client_id': 'WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
         'username': 'testandinho@arbache.com',
         'password': 'teste123'
     }
-    oauth_client = OauthClient()
+    oauth_client = OauthClient(url='https://teste.com.br')
     try:
         oauth_client.oauth_token().post(data=data)
     except Exception as erro:
@@ -69,13 +69,13 @@ def test_autenticar_sem_grant_type(crm_base_url):
 
 
 @responses.activate
-def test_autenticar_sem_username(crm_base_url):
+def test_autenticar_sem_username(base_url):
     data = {
         'client_id': 'WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
         'grant_type': 'password',
         'password': 'teste123'
     }
-    oauth_client = OauthClient()
+    oauth_client = OauthClient(url='https://teste.com.br')
     try:
         oauth_client.oauth_token().post(data=data)
     except Exception as erro:
@@ -83,13 +83,13 @@ def test_autenticar_sem_username(crm_base_url):
 
 
 @responses.activate
-def test_autenticar_sem_password(crm_base_url):
+def test_autenticar_sem_password(base_url):
     data = {
         'client_id': 'WvBxFof28HxjQjk0ryl94bAmpylKqie7kReNWHny',
         'grabt_type': 'password',
         'username': 'testandinho@arbache.com'
     }
-    oauth_client = OauthClient()
+    oauth_client = OauthClient(url='https://teste.com.br')
     try:
         oauth_client.oauth_token().post(data=data)
     except Exception as erro:
@@ -97,8 +97,8 @@ def test_autenticar_sem_password(crm_base_url):
 
 
 @responses.activate
-def test_autenticar_sem_body(crm_base_url):
-    oauth_client = OauthClient()
+def test_autenticar_sem_body(base_url):
+    oauth_client = OauthClient(url='https://teste.com.br')
     try:
         oauth_client.oauth_token().post()
     except Exception as erro:

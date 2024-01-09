@@ -17,18 +17,8 @@ pytest_plugins = [
 
 
 @pytest.fixture
-def crm_base_url():
-    return "https://crm.arbache.com.br"
-
-
-@pytest.fixture
-def play_base_url():
-    return "https://play-api-homolog.arbache.dev.br"
-
-
-@pytest.fixture
-def gestao_base_url():
-    return "https://gestao.arbache.dev.br"
+def base_url():
+    return "https://teste.com.br"
 
 
 @pytest.fixture
@@ -40,7 +30,8 @@ def perfil_adapter():
 def perfil_client():
     return PerfilClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
-        perfil=str(uuid.uuid4())
+        perfil=str(uuid.uuid4()),
+        url='https://teste.com.br'
     )
 
 
@@ -48,7 +39,8 @@ def perfil_client():
 def licenca_client():
     return LicencaClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
-        perfil=str(uuid.uuid4())
+        perfil=str(uuid.uuid4()),
+        url='https://teste.com.br'
     )
 
 
@@ -56,7 +48,8 @@ def licenca_client():
 def relatorio_client():
     return RelatorioClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
-        perfil=str(uuid.uuid4())
+        perfil=str(uuid.uuid4()),
+        url='https://teste.com.br'
     )
 
 
@@ -64,7 +57,8 @@ def relatorio_client():
 def jogo_client():
     return JogoClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
-        perfil=str(uuid.uuid4())
+        perfil=str(uuid.uuid4()),
+        url='https://teste.com.br'
     )
 
 
@@ -72,7 +66,8 @@ def jogo_client():
 def equipe_client():
     return EquipeClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
-        perfil=str(uuid.uuid4())
+        perfil=str(uuid.uuid4()),
+        url='https://teste.com.br'
     )
 
 
@@ -81,7 +76,7 @@ def play_midia_client():
     return PlayMidiaClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
-        url='https://play-api-homolog.arbache.dev.br'
+        url='https://teste.com.br'
     )
 
 
@@ -90,6 +85,7 @@ def interface_client():
     return InterfaceClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
+        url='https://teste.com.br'
     )
 
 
@@ -98,6 +94,7 @@ def crm_midia_client():
     return CrmMidiaClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
+        url='https://teste.com.br'
     )
 
 
@@ -106,7 +103,7 @@ def play_subdominio_client():
     return PlaySubdominioClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
-        url='https://play-api-homolog.arbache.dev.br'
+        url='https://teste.com.br'
     )
 
 
@@ -115,5 +112,5 @@ def play_jogos_subdominio_client():
     return PlayJogosSubdominioClient(
         access_token="xoBS2UF8HH6jOpRdQfytvr036XkWY7",
         perfil=str(uuid.uuid4()),
-        url='https://play-api-homolog.arbache.dev.br'
+        url='https://teste.com.br'
     )

@@ -3,11 +3,11 @@ import status
 
 
 @responses.activate
-def test_list_midias(play_midia_client, play_base_url):
+def test_list_midias(play_midia_client, base_url):
 
     responses.add(
         method=responses.GET,
-        url=f"{play_base_url}/midias/",
+        url=f"{base_url}/midias/",
         status=status.HTTP_200_OK,
         json={}
     )

@@ -3,10 +3,10 @@ import status
 
 
 @responses.activate
-def test_perfil_get(perfil_client, crm_base_url, perfil):
+def test_perfil_get(perfil_client, base_url, perfil):
     responses.add(
         method=responses.GET,
-        url=f"{crm_base_url}/backend/perfil/",
+        url=f"{base_url}/backend/perfil/",
         status=status.HTTP_200_OK,
         json=perfil,
     )

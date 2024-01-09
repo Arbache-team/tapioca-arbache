@@ -5,12 +5,12 @@ import uuid
 
 @responses.activate
 def test_criar_subdominio(
-    play_subdominio_client, play_base_url, response_OK, request_body
+    play_subdominio_client, base_url, response_OK, request_body
 ):
 
     responses.add(
         method=responses.POST,
-        url=f"{play_base_url}/subdominios/",
+        url=f"{base_url}/subdominios/",
         status=status.HTTP_200_OK,
         json=response_OK
     )
@@ -21,11 +21,11 @@ def test_criar_subdominio(
 
 
 @responses.activate
-def test_atualizar_subdominio(play_subdominio_client, play_base_url):
+def test_atualizar_subdominio(play_subdominio_client, base_url):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.PATCH,
-        url=f"{play_base_url}/subdominios/{codigo}/",
+        url=f"{base_url}/subdominios/{codigo}/",
         status=status.HTTP_200_OK,
         json={}
     )
@@ -37,12 +37,12 @@ def test_atualizar_subdominio(play_subdominio_client, play_base_url):
 
 @responses.activate
 def test_retrieve_subdominio(
-    play_subdominio_client, play_base_url, response_OK
+    play_subdominio_client, base_url, response_OK
 ):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.GET,
-        url=f"{play_base_url}/subdominios/{codigo}/",
+        url=f"{base_url}/subdominios/{codigo}/",
         status=status.HTTP_200_OK,
         json=response_OK
     )
