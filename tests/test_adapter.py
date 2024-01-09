@@ -10,5 +10,5 @@ def test_adapter_especificando_url(perfil_adapter):
 
 def test_adapter_sem_especificar_url(perfil_adapter):
     api_params = {}
-    with pytest.raises(MissingUrlExeption) as erro:
-        api_root = perfil_adapter.get_api_root(api_params)
+    with pytest.raises(MissingUrlExeption):
+        perfil_adapter.get_api_root(api_params)
