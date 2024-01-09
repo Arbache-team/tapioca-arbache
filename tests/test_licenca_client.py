@@ -4,11 +4,11 @@ import uuid
 
 
 @responses.activate
-def test_retrieve_licenca(licenca_client, crm_base_url):
+def test_retrieve_licenca(licenca_client, base_url):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.GET,
-        url=f"{crm_base_url}/backend/licencas/{codigo}/",
+        url=f"{base_url}/backend/licencas/{codigo}/",
         status=status.HTTP_200_OK,
         json={}
     )
@@ -19,11 +19,11 @@ def test_retrieve_licenca(licenca_client, crm_base_url):
 
 
 @responses.activate
-def test_conclusao_licenca(licenca_client, crm_base_url):
+def test_conclusao_licenca(licenca_client, base_url):
     codigo = str(uuid.uuid4())
     responses.add(
         method=responses.PATCH,
-        url=f"{crm_base_url}/backend/licencas/{codigo}/",
+        url=f"{base_url}/backend/licencas/{codigo}/",
         status=status.HTTP_200_OK,
         json={}
     )

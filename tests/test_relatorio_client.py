@@ -6,11 +6,11 @@ from tapioca.exceptions import ClientError
 
 @responses.activate
 def test_response_OK_relatorio(
-    relatorio_client, gestao_base_url, response_OK, request_body
+    relatorio_client, base_url, response_OK, request_body
 ):
     responses.add(
         method=responses.POST,
-        url=f"{gestao_base_url}/backend/relatorios/",
+        url=f"{base_url}/backend/relatorios/",
         status=status.HTTP_200_OK,
         json=response_OK
     )
@@ -22,11 +22,11 @@ def test_response_OK_relatorio(
 
 @responses.activate
 def test_response_BAD_REQUEST(
-    relatorio_client, gestao_base_url, response_BAD_REQUEST, request_body
+    relatorio_client, base_url, response_BAD_REQUEST, request_body
 ):
     responses.add(
         method=responses.POST,
-        url=f"{gestao_base_url}/backend/relatorios/",
+        url=f"{base_url}/backend/relatorios/",
         status=status.HTTP_400_BAD_REQUEST,
         json=response_BAD_REQUEST
     )

@@ -12,23 +12,16 @@ from tapioca_arbache.resource_mapping import (
     RELATORIOS, CRM_JOGO_ENDPOINT, PLAY_RESULTADOS_JOGOS_ENDPOINT,
     PLAY_SUBDOMINIO_ENDPOINT, PLAY_JOGO_SUBDOMINIO_ENDPOINT
 )
-from tapioca_arbache.exceptions import ConflictException
+from tapioca_arbache.exceptions import ConflictException, MissingUrlExeption
 
 
 class ArbacheAdapter(JSONAdapterMixin, TapiocaAdapter):
-    prod_url = 'https://crm.arbache.com.br'
-    homolog_url = 'https://crm-homolog.arbache.dev.br'
-    dev_url = 'http://127.0.0.1:8000'
 
     def get_api_root(self, api_params, **kwargs):
         if url := api_params.get('url', ''):
             return url
-        elif api_params.get('ambiente', '').lower() == 'dev':
-            return self.dev_url
-        elif api_params.get('ambiente', '').lower() == 'homolog':
-            return self.homolog_url
         else:
-            return self.prod_url
+            raise MissingUrlExeption
 
     def get_request_kwargs(self, api_params, *args, **kwargs):
         params = super(ArbacheAdapter, self).get_request_kwargs(
@@ -114,16 +107,10 @@ class LicencaAdapter(ArbacheAdapter):
 
 
 class JogoSelfAdapter(ArbacheAdapter):
-    prod_url = 'https://play-api.arbache.dev.br'
-    homolog_url = 'https://play-api-homolog.arbache.dev.br'
-    dev_url = 'http://127.0.0.1:8003'
     resource_mapping = JOGO_SELF
 
 
 class RelatoriosAdapter(ArbacheAdapter):
-    prod_url = 'https://gestao.arbache.dev.br'
-    homolog_url = 'https://gestao-homolog.arbache.dev.br/'
-    dev_url = 'http://127.0.0.1:8002'
     resource_mapping = RELATORIOS
 
 
@@ -148,23 +135,14 @@ class CrmMidiaAdapter(ArbacheAdapter):
 
 
 class PlayResultadoJogoAdapter(ArbacheAdapter):
-    prod_url = 'https://play-api.arbache.dev.br'
-    homolog_url = 'https://play-api-homolog.arbache.dev.br'
-    dev_url = 'http://127.0.0.1:8003'
     resource_mapping = PLAY_RESULTADOS_JOGOS_ENDPOINT
 
 
 class PlaySubdominioAdapter(ArbacheAdapter):
-    prod_url = 'https://play-api.arbache.dev.br'
-    homolog_url = 'https://play-api-homolog.arbache.dev.br'
-    dev_url = 'http://127.0.0.1:8003'
     resource_mapping = PLAY_SUBDOMINIO_ENDPOINT
 
 
 class PlayJogosSubdominioAdapter(ArbacheAdapter):
-    prod_url = 'https://play-api.arbache.dev.br'
-    homolog_url = 'https://play-api-homolog.arbache.dev.br'
-    dev_url = 'http://127.0.0.1:8003'
     resource_mapping = PLAY_JOGO_SUBDOMINIO_ENDPOINT
 
 
